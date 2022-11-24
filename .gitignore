@@ -35,3 +35,8 @@ Intermediate/
 *.exe
 *.out
 *.app
+
+
+
+
+**/*.log
