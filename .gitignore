@@ -1,3 +1,8 @@
+# Directories
+.vs/
+Bin/
+Intermediate/
+
 # Prerequisites
 *.d
 
