@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a5189cea-d31d-4d7a-9f89-f196e8d8606c}</ProjectGuid>
+    <ProjectGuid>{2bec057a-65ec-478c-ba7e-588f5e0ebddd}</ProjectGuid>
     <RootNamespace>Game</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -55,15 +55,18 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>Source\Precompiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\rapidjson;$(SolutionDir)ThirdParty\GLEW\include;$(SolutionDir)ThirdParty\GLFW\include;Source\Precompiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\GLEW\lib\Release\x64;$(SolutionDir)ThirdParty\GLFW\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -72,34 +75,50 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>Source\Pch;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\rapidjson;$(SolutionDir)ThirdParty\GLEW\include;$(SolutionDir)ThirdParty\GLFW\include;Source\Precompiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)ThirdParty\GLEW\lib\Release\x64;$(SolutionDir)ThirdParty\GLFW\lib-vc2022;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CommonUtilities\Math\Matrices\Matrix3x3.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Math\Matrices\Matrix4x4.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Math\Vectors\Vector.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Math\Vectors\Vector2.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Math\Vectors\Vector3.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Math\Vectors\Vector4.hpp" />
+    <ClInclude Include="Source\Enums\Enumerations.h" />
+    <ClInclude Include="Source\Game.h" />
+    <ClInclude Include="Source\Precompiled\Pch.h" />
+    <ClInclude Include="Source\Systems\EventSystem\Dispatcher\Dispatcher.h" />
+    <ClInclude Include="Source\Systems\EventSystem\EventSystem.h" />
+    <ClInclude Include="Source\Systems\EventSystem\Events\Event.h" />
+    <ClInclude Include="Source\Window\Window.h" />
+    <ClInclude Include="Source\Renderers\SpriteRenderer\SpriteRenderer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\Precompiled\Pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\Game.h" />
-    <ClInclude Include="Source\Precompiled\Pch.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Engine\Engine.vcxproj">
-      <Project>{4c835575-9a6e-4e3a-8f65-d0f21a1b0d7d}</Project>
-    </ProjectReference>
+    <ClCompile Include="Source\Systems\EventSystem\Dispatcher\Dispatcher.cpp" />
+    <ClCompile Include="Source\Systems\EventSystem\EventSystem.cpp" />
+    <ClCompile Include="Source\Systems\EventSystem\Events\Event.cpp" />
+    <ClCompile Include="Source\Window\Window.cpp" />
+    <ClCompile Include="Source\Renderers\SpriteRenderer\SpriteRenderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
