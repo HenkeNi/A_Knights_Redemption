@@ -58,8 +58,9 @@
       <PreprocessorDefinitions>GLEW_STATIC;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\rapidjson;$(SolutionDir)ThirdParty\GLEW\include;$(SolutionDir)ThirdParty\GLFW\include;Source\Precompiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>Source\CommonUtilities;Source\Components;Source\Enums;Source\GameObjects;Source\Graphics;Source\Handlers;Source\Managers;Source\Scenes;Source\Structs;Source\Systems;Source\Systems\EventSystem;Source\Renderers;$(SolutionDir)ThirdParty\rapidjson;$(SolutionDir)ThirdParty\GLEW\include;$(SolutionDir)ThirdParty\GLFW\include;Source\Precompiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -78,8 +79,9 @@
       <PreprocessorDefinitions>GLEW_STATIC;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\rapidjson;$(SolutionDir)ThirdParty\GLEW\include;$(SolutionDir)ThirdParty\GLFW\include;Source\Precompiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>Source\CommonUtilities;Source\Components;Source\Enums;Source\GameObjects;Source\Graphics;Source\Handlers;Source\Managers;Source\Scenes;Source\Structs;Source\Systems;Source\Systems\EventSystem;Source\Renderers;$(SolutionDir)ThirdParty\rapidjson;$(SolutionDir)ThirdParty\GLEW\include;$(SolutionDir)ThirdParty\GLFW\include;Source\Precompiled;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -92,6 +94,50 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Handlers\InputHandler.h" />
+    <ClInclude Include="Source\Graphics\Shader\Shader.h" />
+    <ClInclude Include="Source\Managers\CollisionManager\CollisionManager.h" />
+    <ClInclude Include="Source\Components\Transform\C_Transform.h" />
+    <ClInclude Include="Source\Components\Component.hpp" />
+    <ClInclude Include="Source\GameObjects\GameObject.h" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Iterators\VectorOnStackIterator.h" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Deque\Deque.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Grid\Grid.h" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Grid\GridCell.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Linked-List\Doubly-Linked-List\DoublyLinkedList.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Linked-List\Doubly-Linked-List\DoublyLinkedListNode.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Linked-List\Singly-Linked-List\SinglyLinkedList.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Linked-List\Singly-Linked-List\SinglyLinkedListNode.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Queue\Queue.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Stack\Stack.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Vector\VectorOnStack.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\HashMaps\HashMap.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\BinaryTree\BinaryTree.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\BinaryTree\BinaryTreeNode.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\BSTSet\BSTSet.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\BSTSet\BSTSetNode.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\Heap\MaxHeap.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\Heap\MinHeap.hpp" />
+    <ClInclude Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\Quadtree\Quadtree.h" />
+    <ClInclude Include="Source\CommonUtilities\Intersections\Intersection.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Intersections\Sweeps.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Time\Timer.h" />
+    <ClInclude Include="Source\CommonUtilities\Utility\Mathf.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Utility\Sortings.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Utility\UtilityFunctions.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\2D\AABB2D.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\2D\Circle.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\2D\LineVolume.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\2D\OBB2D.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\3D\AABB3D.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\3D\Plane.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\3D\PlaneVolume.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\3D\Sphere.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\Lines\Line.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\Lines\LineSegment.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\Lines\Ray.hpp" />
+    <ClInclude Include="Source\CommonUtilities\Volumes\Volumes.hpp" />
+    <ClInclude Include="Source\Managers\SceneManager\SceneManager.h" />
     <ClInclude Include="Source\CommonUtilities\Math\Matrices\Matrix3x3.hpp" />
     <ClInclude Include="Source\CommonUtilities\Math\Matrices\Matrix4x4.hpp" />
     <ClInclude Include="Source\CommonUtilities\Math\Vectors\Vector.hpp" />
@@ -101,13 +147,35 @@
     <ClInclude Include="Source\Enums\Enumerations.h" />
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\Precompiled\Pch.h" />
+    <ClInclude Include="Source\Scenes\Scene.hpp" />
+    <ClInclude Include="Source\Structs\Structs.h" />
     <ClInclude Include="Source\Systems\EventSystem\Dispatcher\Dispatcher.h" />
     <ClInclude Include="Source\Systems\EventSystem\EventSystem.h" />
     <ClInclude Include="Source\Systems\EventSystem\Events\Event.h" />
-    <ClInclude Include="Source\Window\Window.h" />
+    <ClInclude Include="Source\Systems\EventSystem\Listeners\EventListener.h" />
+    <ClInclude Include="Source\Graphics\Window\Window.h" />
     <ClInclude Include="Source\Renderers\SpriteRenderer\SpriteRenderer.h" />
+    <ClInclude Include="Source\Graphics\Textures\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Handlers\InputHandler.cpp" />
+    <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
+    <ClCompile Include="Source\Managers\CollisionManager\CollisionManager.cpp" />
+    <ClCompile Include="Source\Components\Transform\C_Transform.cpp" />
+    <ClCompile Include="Source\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Source\CommonUtilities\DataStructures\Linear\Grid\Grid.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\CommonUtilities\DataStructures\Non-Linear\Trees\Quadtree\Quadtree.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\CommonUtilities\Time\Timer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Source\Managers\SceneManager\SceneManager.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\Precompiled\Pch.cpp">
@@ -117,8 +185,9 @@
     <ClCompile Include="Source\Systems\EventSystem\Dispatcher\Dispatcher.cpp" />
     <ClCompile Include="Source\Systems\EventSystem\EventSystem.cpp" />
     <ClCompile Include="Source\Systems\EventSystem\Events\Event.cpp" />
-    <ClCompile Include="Source\Window\Window.cpp" />
+    <ClCompile Include="Source\Graphics\Window\Window.cpp" />
     <ClCompile Include="Source\Renderers\SpriteRenderer\SpriteRenderer.cpp" />
+    <ClCompile Include="Source\Graphics\Textures\Texture2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
