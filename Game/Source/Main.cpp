@@ -11,7 +11,7 @@ int main()
   
 	while (game.IsRunning())
 	{
-		game.ProcessInput();
+		game.ProcessEvents();
 		game.Update();
 		game.LateUpdate();
 		game.Draw();
