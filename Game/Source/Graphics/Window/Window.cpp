@@ -5,6 +5,10 @@
 Window::Window()
 	: m_window{ nullptr }, m_width{ 800 }, m_height{ 600 }, m_name{ "A Knights Redemption" }
 {
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	
 	LoadData();
 }
 
@@ -22,6 +26,11 @@ bool Window::Init()
 
 	glfwMakeContextCurrent(m_window);
 	return true;
+}
+
+void Window::Close()
+{
+	glfwSetWindowShouldClose(m_window, true);
 }
 
 void Window::Draw() const
@@ -43,6 +52,11 @@ void Window::Draw() const
 bool Window::IsOpen() const
 {
 	return !glfwWindowShouldClose(m_window);
+}
+
+GLFWwindow* Window::GetWindow()
+{
+	return m_window;
 }
 
 void Window::LoadData()

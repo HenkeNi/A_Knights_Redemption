@@ -9,9 +9,11 @@ public:
 
 
 	bool		Init();
+	void		Close();
+	// Proccess window events??
 	void		Draw()		const;
 	bool		IsOpen()	const;
-
+	GLFWwindow* GetWindow();
 private:
 	void		LoadData();
 
