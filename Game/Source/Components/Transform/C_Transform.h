@@ -28,5 +28,5 @@ public:
 private:
 	CU::Vector2<float>			m_currPosition, m_prevPosition;
 	CU::Vector2<float>			m_rotation;
-	CU::Vector2<float>			m_scale;
+	CU::Vector2<float>			m_scale; // Use for Sprite...
 };
