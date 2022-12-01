@@ -16,8 +16,8 @@ bool Game::Init()
 	if (!glfwInit() || !m_window.Init() || glewInit() != GLEW_OK)
 		return false; 
 	
-	//m_inputHandler.Init(m_window.GetWindow());
-
+	m_inputHandler.Init(m_window.GetWindow());
+	m_textureManager.Init("../Assets/Json/Textures.json");
 
 	// m_textures.Init("../Assets/Json/Textures.json", "textures");
 	// m_fonts.Init("../Assets/Json/Fonts.json", "fonts");

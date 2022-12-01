@@ -3,6 +3,8 @@
 #include "InputHandler.h"
 #include "SceneManager/SceneManager.h"
 #include "Time/Timer.h"
+#include "Renderers/SpriteRenderer/SpriteRenderer.h"
+#include "ResourceManager/ResourceManager.hpp"
 #include "Window/Window.h"
 
 class Game
@@ -23,11 +25,11 @@ private:
 	void RegisterScenes();
 	void MapControlls();
 
-
-	//ResourceManager<sf::Texture, std::string>	m_textures;
 	//ResourceManager<sf::Font, std::string>		m_fonts;
-	InputHandler	m_inputHandler;
-	SceneManager	m_sceneManager;
-	Window			m_window;
-	CU::Timer		m_timer;
+	//SpriteRenderer								m_spriteRenderer; 
+	InputHandler								m_inputHandler;
+	ResourceManager<Texture2D, std::string>		m_textureManager;
+	SceneManager								m_sceneManager;
+	Window										m_window;
+	CU::Timer									m_timer;
 };
