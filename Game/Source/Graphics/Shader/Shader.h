@@ -6,9 +6,10 @@ class Shader
 {
 public:
 	Shader();
-	
-
+	 
 	void	Init(const char* vSource, const char* fSource, const char* gSource = nullptr); 
+	bool	LoadFromFile(const std::string& aFilepath);
+
 	Shader& Activate();
 	
 	void	SetBool(const std::string& aName,		bool aValue)						const;

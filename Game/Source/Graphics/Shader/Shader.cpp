@@ -48,6 +48,13 @@ void Shader::Init(const char* vSource, const char* fSource, const char* gSource)
 		glDeleteShader(geometryShader);
 }
 
+bool Shader::LoadFromFile(const std::string& aFilepath)
+{
+
+
+	return true;
+}
+
 void Shader::SetBool(const std::string& aName, bool aValue)	const
 {
 	glUniform1i(glGetUniformLocation(m_id, aName.c_str()), (int)aValue);
