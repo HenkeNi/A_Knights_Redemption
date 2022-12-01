@@ -9,9 +9,9 @@ public:
 	InputHandler();
 	~InputHandler();
 
-	//void Init(GLFWwindow* aWindow);
+	void Init(GLFWwindow* aWindow);
 
-//	static void KeyCallback(GLFWwindow* aWindow, int aKey, int aScanCode, int anAction, int someMods);
+	static void KeyCallback(GLFWwindow* aWindow, int aKey, int aScanCode, int anAction, int someMods);
 
 private:
 
