@@ -1,6 +1,5 @@
 #pragma once
 #include "Component.hpp"
-#include "Math/Vectors/Vector.hpp"
 
 namespace CU = CommonUtilities;
 
