@@ -3,10 +3,16 @@
 
 
 Shader::Shader()
+	: m_id{ 0 }
 {
 }
 
-Shader& Shader::Activate()
+Shader::~Shader()
+{
+	glDeleteProgram(m_id);
+}
+
+Shader& Shader::Activate()  
 {
 	glUseProgram(m_id);
 	return *this;
@@ -38,6 +44,7 @@ void Shader::Init(const char* vSource, const char* fSource, const char* gSource)
 	if (gSource) 
 		glAttachShader(m_id, geometryShader);
 	
+	/* Link Program */
 	glLinkProgram(m_id);
 	CheckCompileErrors(m_id, "PROGRAM");
 
@@ -48,12 +55,12 @@ void Shader::Init(const char* vSource, const char* fSource, const char* gSource)
 		glDeleteShader(geometryShader);
 }
 
-bool Shader::LoadFromFile(const std::string& aFilepath)
-{
-
-
-	return true;
-}
+//bool Shader::LoadFromFile(const std::string& aFilepath)
+//{
+//
+//
+//	return true;
+//}
 
 void Shader::SetBool(const std::string& aName, bool aValue)	const
 {
@@ -85,10 +92,15 @@ void Shader::SetVector4f(const std::string& aName, const CU::Vector4<float>& aVa
 	glUniform4f(glGetUniformLocation(m_id, aName.c_str()), aValue.x, aValue.y, aValue.z, aValue.w);
 }
 
-void Shader::SetMatrix4x4(const std::string& aName, const CU::Matrix4x4<float>& aValue)	const
+//void Shader::SetMatrix4x4(const std::string& aName, const CU::Matrix4x4<float>& aValue)	const
+//{
+//	assert(true && "NOT IMPLEMENTED");
+//	//	glUniformMatrix4fv(glGetUniformLocation(m_id, aName.c_str()), glm::v)
+//}
+
+void Shader::SetMatrix4(const std::string& aName, const glm::mat4& aMatrix)	const
 {
-	assert(true && "NOT IMPLEMENTED");
-	//	glUniformMatrix4fv(glGetUniformLocation(m_id, aName.c_str()), glm::v)
+	glUniformMatrix4fv(glGetUniformLocation(m_id, aName.c_str()), 1, false, glm::value_ptr(aMatrix));
 }
 
 int	Shader::CreateShader(GLenum aShaderType, const char* aSource)
