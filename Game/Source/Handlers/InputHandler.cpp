@@ -10,9 +10,9 @@ InputHandler::~InputHandler()
 {
 }
 
-void InputHandler::Init(GLFWwindow* aWindow)
+void InputHandler::Init()
 {
-	glfwSetKeyCallback(aWindow, KeyCallback);
+	//glfwSetKeyCallback(aWindow, KeyCallback);
 }
 
 void InputHandler::KeyCallback(GLFWwindow* aWindow, int aKey, int aScanCode, int anAction, int someMods)

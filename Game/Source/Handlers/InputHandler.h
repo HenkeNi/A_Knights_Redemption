@@ -1,5 +1,4 @@
 #pragma once
-#include "Math/Vectors/Vector.hpp"
 
 namespace CU = CommonUtilities;
 
@@ -9,11 +8,13 @@ public:
 	InputHandler();
 	~InputHandler();
 
-	void Init(GLFWwindow* aWindow);
-
+	void		Init();
 	static void KeyCallback(GLFWwindow* aWindow, int aKey, int aScanCode, int anAction, int someMods);
 
 private:
 
+
+
+	// bool keysDown[eKeys::Count], keysPressed[eKeys::Count]
 };
 
