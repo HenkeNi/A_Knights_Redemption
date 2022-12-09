@@ -4,7 +4,6 @@
 #include "../Utility/UtilityFunctions.hpp"
 #include <algorithm>
 
-
 // Intersection Tests are a static vs static test. They check whether two static objects are overlapping. They have a boolean result (colliding or not), with a vector which
 
 namespace CommonUtilities
@@ -83,8 +82,8 @@ namespace CommonUtilities
 	//template <typename T>
 	struct Hit
 	{
-		CU::Vector3<float>	m_contactPoint;
-		CU::Vector3<float>	m_contactNormal;
+		Vector3<float>	m_contactPoint;
+		Vector3<float>	m_contactNormal;
 		float			m_tHitNear = 0.f;
 		bool			m_isColliding;
 	};
