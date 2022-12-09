@@ -8,10 +8,12 @@ public:
 
 
 	void		Init(unsigned aWidth, unsigned aHeight, unsigned char* data); 
-	bool		LoadFromFile(const std::string& aFilepath);
-	
+	//void		SetInternalFormat(unsigned aFormat);
+	//void		SetImageFormat(unsigned aFormat);
 	void		Bind() const;
+	//bool		LoadFromFile(const std::string& aFilepath);
 
 private:
+	unsigned	m_internalFormat, m_imageFormat;
 	unsigned	m_id;
 };
