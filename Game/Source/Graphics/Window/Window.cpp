@@ -1,31 +1,61 @@
 #include "Pch.h"
 #include "Window.h"
+#include "Dispatcher/Dispatcher.h"
+#include "Events/Event.h"
+
+void FrameBufferSizeCallback(GLFWwindow* aWindow, int aWidth, int aHeight);
+void WindowFocusCallback(GLFWwindow* aWindow, int aFocused);
 
 
 Window::Window()
-	: m_window{ nullptr }, m_width{ 800 }, m_height{ 600 }, m_name{ "A Knights Redemption" }
+	: m_window{ nullptr }, m_size{ 800, 600 }, m_name{ "A Knights Redemption" }
 {
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	
-	LoadData();
+}
+
+Window::~Window()
+{
+	glfwTerminate();
 }
 
 bool Window::Init()
 {
-	m_window = glfwCreateWindow(m_width, m_height, m_name.c_str(), nullptr, nullptr);
+	InitGlfw();
+	LoadData();
+
+	m_window = glfwCreateWindow(m_size.x, m_size.y, m_name.c_str(), nullptr, nullptr);
 	if (!m_window)
 	{
 		glfwTerminate();
 		return false;
 	}
 
-	glViewport(0, 0, m_width, m_height);
-	glfwSetFramebufferSizeCallback(m_window, [](GLFWwindow* aWindow, int aWidth, int aHeight) { glViewport(0, 0, aWidth, aHeight); });
-
 	glfwMakeContextCurrent(m_window);
+	glfwSetFramebufferSizeCallback(m_window, FrameBufferSizeCallback); 
+	glfwSetWindowFocusCallback(m_window, WindowFocusCallback);
+	
+	glViewport(0, 0, m_size.x, m_size.y);
+	SetIcon(m_icon);
+	
 	return true;
+}
+
+void Window::SetKeyCallback(GLFWkeyfun aKeyCallback)
+{
+	glfwSetKeyCallback(m_window, aKeyCallback);
+}
+
+void Window::SetSize(const CU::Vector2<unsigned>& aSize)
+{
+	glfwSetWindowSize(m_window, aSize.x, aSize.y);
+}
+
+void Window::SetIcon(const std::string& aPath)
+{
+	GLFWimage image;
+	image.pixels = stbi_load(aPath.c_str(), &image.width, &image.height, 0, 4);
+
+	glfwSetWindowIcon(m_window, 1, &image);
+	stbi_image_free(image.pixels);
 }
 
 void Window::Close()
@@ -33,30 +63,46 @@ void Window::Close()
 	glfwSetWindowShouldClose(m_window, true);
 }
 
-void Window::Draw() const
+void Window::PollEvents()	const
 {
+	glfwPollEvents();
+}
+
+void Window::BeginDraw() const
+{
+	glClearColor(0.5f, 0.8f, 0.4f, 1.f);
 	glClear(GL_COLOR_BUFFER_BIT);
+}
 
-	// TEST 
-	glBegin(GL_TRIANGLES);
-	glVertex2f(-0.5f, -0.5f);
-	glVertex2f(0.f, 0.5f);
-	glVertex2f(0.5f, -0.5f);
-	glEnd();
-	//
-
-	/* Swap front and back buffers */
+void Window::EndDraw() const
+{
 	glfwSwapBuffers(m_window);
 }
+
+//void Window::Draw() const
+//{
+//	glClear(GL_COLOR_BUFFER_BIT);
+//
+//	// TEST 
+//	//glBegin(GL_TRIANGLES);
+//	//glVertex2f(-0.5f, -0.5f);
+//	//glVertex2f(0.f, 0.5f);
+//	//glVertex2f(0.5f, -0.5f);
+//	//glEnd();
+//	//
+//
+//	/* Swap front and back buffers */
+//	glfwSwapBuffers(m_window);
+//}
 
 bool Window::IsOpen() const
 {
 	return !glfwWindowShouldClose(m_window);
 }
 
-GLFWwindow* Window::GetWindow()
+const CU::Vector2<unsigned>& Window::GetSize() const
 {
-	return m_window;
+	return m_size;
 }
 
 void Window::LoadData()
@@ -68,7 +114,34 @@ void Window::LoadData()
 	if (!document.Parse(content.c_str()).HasParseError())
 	{
 		m_name	 = document["window"]["name"].GetString();
-		m_width	 = document["window"]["size"]["width"].GetInt();
-		m_height = document["window"]["size"]["height"].GetInt();
+		m_icon	 = document["window"]["icon"].GetString();
+		m_size.x = document["window"]["size"]["width"].GetInt();
+		m_size.y = document["window"]["size"]["height"].GetInt();
 	}
 }
+
+bool Window::InitGlfw()	const
+{
+	if (!glfwInit())
+		return false;
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	
+	return true;
+}
+
+#pragma region CALLBACK_FUNCTIONS
+
+void FrameBufferSizeCallback(GLFWwindow* aWindow, int aWidth, int aHeight)
+{
+	glViewport(0, 0, aWidth, aHeight);
+}
+
+void WindowFocusCallback(GLFWwindow* aWindow, int aFocused)
+{
+	Dispatcher::GetInstance().SendEvent(Event{ aFocused ? eEventType::WindowGainedFocus : eEventType::WindowLostFocus, nullptr });
+}
+
+#pragma endregion CALLBACK_FUNCTIONS
