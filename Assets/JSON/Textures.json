@@ -1,6 +1,12 @@
 [
   {
     "name": "Test",
-    "filepath": "../../Assets/Textures/Idle__000.png"
+    "filepath": "../Assets/Textures/Idle__000.png",
+    "alpha": false
+  },
+  {
+    "name": "Wall",
+    "filepath": "../Assets/Textures/wall.jpg",
+    "alpha": false
   }
 ]
