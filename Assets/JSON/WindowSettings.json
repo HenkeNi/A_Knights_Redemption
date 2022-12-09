@@ -4,6 +4,7 @@
     "size": {
       "width": 1024,
       "height": 600
-    }
+    },
+    "icon": "../Assets/Textures/wall.jpg"
   }
 }
