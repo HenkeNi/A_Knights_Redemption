@@ -6,6 +6,7 @@ namespace CU = CommonUtilities;
 // Proccess window events??
 // glfwGetPrimaryMonitor() for fullscreen...
 // https://www.youtube.com/watch?v=0U-9ofLB22E&t=1s
+
 class Window
 {
 public:
