@@ -88,12 +88,12 @@ void GameObject::LateUpdate(float aDeltaTime)
 	}
 }
 
-void GameObject::Draw(Window& aWindow) const
+void GameObject::Draw() const
 {
 	for (auto& component : m_components)
 	{
 		if (component.second && component.second->IsActive())
-			component.second->Draw(aWindow);
+			component.second->Draw();
 	}
 }
 

@@ -2,7 +2,6 @@
 #include "Enumerations.h"
 
 class Component;
-class Window;
 
 class GameObject
 {
@@ -15,11 +14,11 @@ public:
 	~GameObject();
 
 	GameObject& operator=(const GameObject& aGameObject);
-	GameObject& operator=(GameObject&& aGameObject)						 noexcept;
+	GameObject& operator=(GameObject&& aGameObject)										 noexcept;
 
 	void						Update(float aDeltaTime);
 	void						LateUpdate(float aDeltaTime);
-	void						Draw(Window& aWindow)										const;
+	void						Draw()														const;
 	bool						IsMarkedForRemoval()										const;
 	void						SetIsMarkedForRemoval(bool isMarked);
 	void						NotifyComponents(eMessage aMessageType, const std::any& someData);
