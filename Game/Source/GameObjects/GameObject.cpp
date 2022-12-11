@@ -1,6 +1,6 @@
 #include "Pch.h"
 #include "GameObject.h"
-#include "Component.hpp"
+#include "Component.h"
 #include "Transform/C_Transform.h"
 
 

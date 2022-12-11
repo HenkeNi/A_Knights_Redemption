@@ -1,5 +1,5 @@
 #pragma once
-#include "Component.hpp"
+#include "Component.h"
 
 namespace CU = CommonUtilities;
 
