@@ -3,6 +3,11 @@
 #include "Structs.h"
 
 
+// REMOVE LATER
+#include "Sprite/C_Sprite.h"
+
+
+
 Game::Game() 
 {
 }
@@ -11,16 +16,19 @@ Game::~Game()
 {
 }
 
+
+
+#include "Transform/C_Transform.h"
 bool Game::Init()
 {
 	if (!m_window.Init() || glewInit() != GLEW_OK) // TODO: Instead of passing in a keycallback function -> send an event??? -> mark as handled??
-		return false;  
-	
+		return false;
+
 	m_window.SetKeyCallback(m_inputHandler.KeyCallback); // OR Pass into Window.Init()??
 	//m_window.SetIcon("../Assets/Textures/wall.jpg");	// TODO: read from json...
 	m_textureManager.FetchAll("../Assets/Json/Textures.json");
 	m_shaderManager.FetchAll("../Assets/Json/Shaders.json");
-	m_inputHandler.Init(); 
+	m_inputHandler.Init();
 	m_spriteRenderer.Init();
 
 	m_spriteRenderer.SetShader(&m_shaderManager.GetResource("sprite"));
@@ -32,6 +40,19 @@ bool Game::Init()
 
 	RegisterScenes();
 	MapControlls();
+
+
+
+
+	// TEST
+	//  
+	m_player.GetComponent<C_Transform>()->SetPosition({ 120.f, 120.f });
+	m_player.GetComponent<C_Transform>()->SetScale({ 100.f, 100.f });
+	m_player.CreateComponent<C_Sprite>(&m_spriteRenderer, &m_textureManager.GetResource("Wall"));
+	//
+
+
+
 
 	return true;
 }
@@ -57,10 +78,10 @@ void Game::Draw()
 {
 	m_window.BeginDraw();
 
+	m_player.Draw();
 
-
-	m_spriteRenderer.DrawSprite(m_textureManager.GetResource("Wall"), CU::Vector2<float>{ 110.1f, 110.1f }, 
-		CU::Vector2<float>{ 100.f, 100.f }, { 1.f, 1.f, 1.f }, 0.f);
+	/*m_spriteRenderer.DrawSprite(m_textureManager.GetResource("Wall"), CU::Vector2<float>{ 110.1f, 110.1f }, 
+		CU::Vector2<float>{ 100.f, 100.f }, { 1.f, 1.f, 1.f }, 0.f);*/
 
 
 	

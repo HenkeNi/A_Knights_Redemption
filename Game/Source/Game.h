@@ -7,6 +7,7 @@
 #include "Window/Window.h"
 
 
+#include "GameObject.h" // REMOVE LATER:::
 class Game
 {
 public:
@@ -24,6 +25,10 @@ public:
 private:
 	void RegisterScenes();
 	void MapControlls();
+
+
+
+	GameObject m_player;
 
 	//ResourceManager<sf::Font, std::string>		m_fonts;
 	SpriteRenderer								m_spriteRenderer; 
