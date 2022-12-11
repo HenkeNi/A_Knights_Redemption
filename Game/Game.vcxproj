@@ -101,7 +101,7 @@
     <ClInclude Include="Source\Graphics\Shader\Shader.h" />
     <ClInclude Include="Source\Managers\CollisionManager\CollisionManager.h" />
     <ClInclude Include="Source\Components\Transform\C_Transform.h" />
-    <ClInclude Include="Source\Components\Component.hpp" />
+    <ClInclude Include="Source\Components\Component.h" />
     <ClInclude Include="Source\GameObjects\GameObject.h" />
     <ClInclude Include="Source\CommonUtilities\DataStructures\Iterators\VectorOnStackIterator.h" />
     <ClInclude Include="Source\CommonUtilities\DataStructures\Linear\Deque\Deque.hpp" />
@@ -157,6 +157,7 @@
     <ClInclude Include="Source\Graphics\Textures\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\Component.cpp" />
     <ClCompile Include="Source\Components\Sprite\C_Sprite.cpp" />
     <ClCompile Include="Source\Handlers\InputHandler.cpp" />
     <ClCompile Include="Source\Graphics\Shader\Shader.cpp" />
