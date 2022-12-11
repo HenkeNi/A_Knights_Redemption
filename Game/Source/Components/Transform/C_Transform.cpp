@@ -4,7 +4,7 @@
 
 
 C_Transform::C_Transform(GameObject* anOwner)
-	: Component{ anOwner }, m_currPosition{ 0.f, 0.f }, m_prevPosition{ 0.f, 0.f }
+	: Component{ anOwner }, m_currPosition{ 0.f, 0.f }, m_prevPosition{ 0.f, 0.f }, m_scale{ 1.f, 1.f }, m_rotation{ 0.f }
 {
 }
 
@@ -48,6 +48,11 @@ void  C_Transform::SetYPosition(float aY)
 	m_currPosition.y = aY;
 }
 
+void C_Transform::SetScale(const CU::Vector2<float>& aScale)
+{
+	m_scale = aScale;
+}
+
 void  C_Transform::AddPosition(const CU::Vector2<float>& aPosition)
 {
 	m_currPosition += aPosition;
@@ -62,6 +67,16 @@ void  C_Transform::AddPosition(float aX, float aY)
 const CU::Vector2<float>& C_Transform::GetPosition() const
 {
 	return m_currPosition;
+}
+
+const CU::Vector2<float>& C_Transform::GetScale() const
+{
+	return m_scale;
+}
+
+float C_Transform::GetRotation() const
+{
+	return m_rotation;
 }
 
 bool  C_Transform::HasMoved() const
