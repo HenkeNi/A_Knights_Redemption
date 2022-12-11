@@ -19,7 +19,7 @@ Window::~Window()
 
 bool Window::Init()
 {
-	InitGlfw();
+	InitGlfw(); 
 	LoadData();
 
 	m_window = glfwCreateWindow(m_size.x, m_size.y, m_name.c_str(), nullptr, nullptr);
