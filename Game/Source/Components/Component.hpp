@@ -2,7 +2,7 @@
 #include "Enumerations.h"
 
 class GameObject;
-class Window;
+class Renderer;
 
 class Component
 {
@@ -11,15 +11,17 @@ public:
 	virtual ~Component() = default;
 
 	virtual void	HandleMessage(eMessage aMessageType, const std::any& someData)	= 0;
+	//virtual void	Activate()														= 0;
+	//virtual void	Deactivate()													= 0;
 	virtual void	Update(float aDeltaTime)										= 0;
 	virtual void	LateUpdate(float aDeltaTime)									 {};
-	virtual void	Draw(Window& aWindow) const										 {};
+	virtual void	Draw()													   const {};
+	//virtual void	Draw(Window& aWindow)									   const {};
 
-	inline  void	SetOwner(GameObject* anOwner) { m_owner = anOwner; }
-	inline  void	SetIsActive(bool isActive) { m_isActive = isActive; }
-	inline  bool	IsActive() const { return m_isActive; }
+	inline  void	SetOwner(GameObject* anOwner)	{ m_owner = anOwner;	 }
+	inline  bool	IsActive() const				{ return m_isActive;	 }
 
 protected:
-	GameObject*		m_owner; // [Consider] replacing with GameObjectID...
+	GameObject*		m_owner; // [Consider] replacing with GameObjectID... or a Weak_ptr?
 	bool			m_isActive;
 };
