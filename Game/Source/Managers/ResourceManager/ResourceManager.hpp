@@ -2,6 +2,7 @@
 #include "Shader/Shader.h"
 #include "Textures/Texture2D.h"
 
+
 // Rename ResourceHandler? ResourceHolder?
 template <typename Resource, typename Identifier>
 class ResourceManager
@@ -24,6 +25,9 @@ public:
 private:
 	std::unordered_map<Identifier, std::unique_ptr<Resource>> m_resources;
 };
+
+using TextureManager = ResourceManager<Texture2D, std::string>;
+using ShaderManager  = ResourceManager<Shader, std::string>;
 
 #pragma region METHOD_DEFINITIONS
 
@@ -135,4 +139,3 @@ void ResourceManager<Resource, Identifier>::Clear()
 }
 
 #pragma endregion METHOD_DEFINITIONS
-
