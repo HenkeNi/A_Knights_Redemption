@@ -16,6 +16,7 @@ public:
 	void		HandleMessage(eMessage aMessageType, const std::any& someData)		  override;
 	void		Update(float aDeltaTime)											  override;
 	void		Draw()															const override;
+	void		OnActivate()														  override;
 
 	void		SetRenderer(SpriteRenderer* aRenderer);
 	void		SetTexture(Texture2D* aTexture);

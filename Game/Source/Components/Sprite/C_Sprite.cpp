@@ -6,9 +6,8 @@
 
 
 C_Sprite::C_Sprite(GameObject* anOwner)
-	: Component{ anOwner }, m_renderer{ nullptr }, m_texture{ nullptr }
+	: C_Sprite{ anOwner, nullptr, nullptr }
 {
-	m_transform = m_owner->GetComponent<C_Transform>(); // TODO: do it in an Active() function?
 }
 
 C_Sprite::C_Sprite(GameObject* anOwner, SpriteRenderer* aRenderer, Texture2D* aTexture)
@@ -23,17 +22,26 @@ void C_Sprite::HandleMessage(eMessage aMessageType, const std::any& someData)
 
 	// Listen for scale changed (C_Transform)
 }
+
 void C_Sprite::Update(float aDeltaTime)
 {
 }
 
 void C_Sprite::Draw() const
 {
+	if (!m_renderer || !m_texture)
+		return;
+
 	// TODO: Make C_Sprite a friend class instead??
 	// TODO: Have a reference to Transform??
 	//auto transform = m_owner->GetComponent<C_Transform>();
 	auto transform = m_transform.lock();
-	m_renderer->DrawSprite(*m_texture, transform->GetPosition(), transform->GetScale(), {1.f, 1.f, 1.f}, transform->GetRotation());
+	m_renderer->RenderSprite({ *m_texture, { 1.f, 1.f, 1.f }, transform->GetPosition(), transform->GetScale(), transform->GetRotation() });
+}
+
+void C_Sprite::OnActivate()
+{
+	m_transform = m_owner->GetComponent<C_Transform>();
 }
 
 void C_Sprite::SetRenderer(SpriteRenderer* aRenderer)
