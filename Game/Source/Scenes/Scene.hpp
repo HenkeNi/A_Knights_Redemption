@@ -16,7 +16,7 @@ public:
 	virtual bool			IsOverlay()					  const;
 
 	virtual void			OnEnter() {};
-	virtual void			OnExit() {};
+	virtual void			OnExit()  {};
 
 protected:
 	SharedContext			m_sharedContext;
