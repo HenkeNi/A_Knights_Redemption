@@ -4,18 +4,18 @@
 class Event;
 class EventListener;
 
-
+// Rename: Event Dispacther instead?? - SubscribeToEvent()? UnsubscribeFromEvent()?
 class Dispatcher
 {
 public:
-	static Dispatcher& GetInstance();
-
-	Dispatcher(const Dispatcher&) = delete;
+	Dispatcher(const Dispatcher&)			 = delete;
 	Dispatcher& operator=(const Dispatcher&) = delete;
+	
+	static Dispatcher&	GetInstance();
 
-	void Subscribe(const eEventType anEventType, EventListener* aSubscriber);
-	void Unsubscribe(const eEventType anEventType, EventListener* aSubscriber);
-	void SendEvent(const Event& anEvent);
+	void				Subscribe(const eEventType anEventType, EventListener* aSubscriber); 
+	void				Unsubscribe(const eEventType anEventType, EventListener* aSubscriber);
+	void				SendEvent(Event anEvent);
 
 private:
 	Dispatcher() = default;

@@ -12,7 +12,9 @@ Dispatcher& Dispatcher::GetInstance()
 
 void Dispatcher::Subscribe(const eEventType anEventType, EventListener* aSubscriber)
 {
-	assert(std::find(m_listeners[anEventType].begin(), m_listeners[anEventType].end(), aSubscriber) == m_listeners[anEventType].end());
+	auto it = std::find(m_listeners[anEventType].begin(), m_listeners[anEventType].end(), aSubscriber);
+	assert(it == m_listeners[anEventType].end());
+
 	m_listeners[anEventType].push_back(aSubscriber);
 }
 
@@ -24,11 +26,13 @@ void Dispatcher::Unsubscribe(const eEventType anEventType, EventListener* aSubsc
 	m_listeners[anEventType].erase(it);
 }
 
-void Dispatcher::SendEvent(const Event& anEvent)
+void Dispatcher::SendEvent(Event anEvent)
 {
-	for (auto listener : m_listeners[anEvent.GetEventType()])
+	for (auto& listener : m_listeners[anEvent.GetEventType()])
 	{
-		// if event isn't handled...
+		if (anEvent.IsHandled())
+			break;
+
 		listener->Receive(anEvent);
 	}
 }
