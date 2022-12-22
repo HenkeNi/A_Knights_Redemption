@@ -3,7 +3,7 @@
 
 
 Event::Event(eEventType anEventType, const std::any& someData)
-	: m_type{ anEventType }, m_data{ someData }, m_isHandled { false }
+	: m_type{ anEventType }, m_data{ someData }, m_isHandled{ false }
 {
 }
 
@@ -17,7 +17,12 @@ const std::any& Event::GetData() const
 	return m_data;
 }
 
-std::any Event::GetData()
+bool Event::IsHandled() const
 {
-	return m_data;
+	return m_isHandled;
+}
+
+void Event::HandleEvent()
+{
+	m_isHandled = true;
 }

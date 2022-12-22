@@ -9,7 +9,9 @@ public:
 
 	eEventType			GetEventType()	const;
 	const std::any&		GetData()		const;
-	std::any			GetData();
+	bool				IsHandled()		const;
+	void				HandleEvent();
+
 private:
 	std::any			m_data;
 	eEventType			m_type;
