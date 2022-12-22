@@ -9,6 +9,9 @@ public:
 	~InputHandler();
 
 	void		Init();
+	void		ProcessInput();
+	void		MapEvent();
+
 	static void KeyCallback(GLFWwindow* aWindow, int aKey, int aScanCode, int anAction, int someMods);
 
 private:

@@ -1,5 +1,7 @@
 #include "Pch.h"
 #include "InputHandler.h"
+#include "Dispatcher/Dispatcher.h"
+#include "Events/Event.h"
 
 
 InputHandler::InputHandler()
@@ -20,7 +22,9 @@ void InputHandler::KeyCallback(GLFWwindow* aWindow, int aKey, int aScanCode, int
 	if (aKey == GLFW_KEY_E)
 	{
 		if (anAction == GLFW_PRESS)
-			std::cout << "Press e";
+			;
+			//Dispatcher::GetInstance().SendEvent({ eEventType::KeyPressed, true });
+			//std::cout << "Press e";
 		else if (anAction == GLFW_REPEAT)
 			std::cout << "Repeat e";
 		else if (anAction == GLFW_RELEASE)
