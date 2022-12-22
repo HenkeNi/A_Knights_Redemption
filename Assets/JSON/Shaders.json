@@ -2,5 +2,9 @@
   {
     "name": "sprite",
     "filepath": "../Assets/Shaders/Sprite/"
+  },
+  {
+    "name": "text",
+    "filepath": "../Assets/Shaders/Text/"
   }
 ]
