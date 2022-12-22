@@ -13,7 +13,6 @@ public:
 	Window();
 	~Window();
 
-	//void		Draw()		const; - or use this (Have a reference in tihs class for current Renderer???)
 	bool							Init();
 	void							SetKeyCallback(GLFWkeyfun aKeyCallback);
 	void							SetSize(const CU::Vector2<unsigned>& aSize);
@@ -21,14 +20,14 @@ public:
 	void							Close();
 
 	void							PollEvents()	const;
-	void							BeginDraw()		const;
-	void							EndDraw()		const;
+	void							ClearScreen()	const;
+	void							SwapBuffers()	const;
 	bool							IsOpen()		const;
 	const CU::Vector2<unsigned>&	GetSize()		const;
 
 private:
-	void							LoadData();
 	bool							InitGlfw()		const;
+	void							LoadData();
 
 	CU::Vector2<unsigned>			m_size;
 	std::string						m_name, m_icon;

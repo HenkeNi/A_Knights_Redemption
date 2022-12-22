@@ -68,32 +68,16 @@ void Window::PollEvents()	const
 	glfwPollEvents();
 }
 
-void Window::BeginDraw() const
+void Window::ClearScreen() const
 {
-	glClearColor(0.5f, 0.8f, 0.4f, 1.f);
+	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Window::EndDraw() const
+void Window::SwapBuffers() const
 {
 	glfwSwapBuffers(m_window);
 }
-
-//void Window::Draw() const
-//{
-//	glClear(GL_COLOR_BUFFER_BIT);
-//
-//	// TEST 
-//	//glBegin(GL_TRIANGLES);
-//	//glVertex2f(-0.5f, -0.5f);
-//	//glVertex2f(0.f, 0.5f);
-//	//glVertex2f(0.5f, -0.5f);
-//	//glEnd();
-//	//
-//
-//	/* Swap front and back buffers */
-//	glfwSwapBuffers(m_window);
-//}
 
 bool Window::IsOpen() const
 {
@@ -103,6 +87,18 @@ bool Window::IsOpen() const
 const CU::Vector2<unsigned>& Window::GetSize() const
 {
 	return m_size;
+}
+
+bool Window::InitGlfw()	const
+{
+	if (!glfwInit())
+		return false;
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	
+	return true;
 }
 
 void Window::LoadData()
@@ -118,18 +114,6 @@ void Window::LoadData()
 		m_size.x = document["window"]["size"]["width"].GetInt();
 		m_size.y = document["window"]["size"]["height"].GetInt();
 	}
-}
-
-bool Window::InitGlfw()	const
-{
-	if (!glfwInit())
-		return false;
-
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	
-	return true;
 }
 
 #pragma region CALLBACK_FUNCTIONS
