@@ -4,5 +4,5 @@
 class EventListener
 {
 public:
-	virtual void Receive(const Event& anEvent) = 0;
+	virtual void Receive(Event& anEvent) = 0;
 };
