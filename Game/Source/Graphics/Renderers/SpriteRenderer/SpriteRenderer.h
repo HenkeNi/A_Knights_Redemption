@@ -1,5 +1,6 @@
 #pragma once
 #include "Shader/Shader.h"
+#include "Structs.h"
 
 namespace CU = CommonUtilities;
 
@@ -18,12 +19,13 @@ public:
 
 	// TODO: accept a transform matrix??
 	// Store this data in TEXTURE? -> rotation, etc..?
-	void DrawSprite(Texture2D& aTexture, const CU::Vector2<float>& aPosition, const CU::Vector2<float>& aSize, const CU::Vector3<float>& aColor, float aRotation = 0.f);
-	//void DrawSprite(C_Sprite* aSprite);
+	// Rename RenderSprite??
+	void RenderSprite(const SpriteRenderData& someData);
+	//void DrawSprite(Texture2D& aTexture, const CU::Vector2<float>& aPosition, const CU::Vector2<float>& aSize, const CU::Vector3<float>& aColor, float aRotation = 0.f);
 
 private:
 
-	Shader*		m_shader;
+	Shader*		m_shader;	// Accept shader when rendering??
 	unsigned	m_quadVAO;
 };
 

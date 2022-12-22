@@ -61,23 +61,55 @@ void SpriteRenderer::SetShader(Shader* aShader)
 	m_shader = aShader;
 }
 
-void SpriteRenderer::DrawSprite(Texture2D& aTexture, const CU::Vector2<float>& aPosition, const CU::Vector2<float>& aSize, const CU::Vector3<float>& aColor, float aRotation)
+//void SpriteRenderer::DrawSprite(Texture2D& aTexture, const CU::Vector2<float>& aPosition, const CU::Vector2<float>& aSize, const CU::Vector3<float>& aColor, float aRotation)
+//{
+//	assert(m_shader);
+//
+//	m_shader->Activate();
+//
+//	glm::mat4 model = glm::mat4(1.f);
+//	model = glm::translate(model, glm::vec3(aPosition.x, aPosition.y, 0.f)); // Use own math library!?
+//
+//	model = glm::translate(model, glm::vec3(0.5f * aSize.x, 0.5f * aSize.y, 0.f));
+//	model = glm::rotate(model, glm::radians(aRotation), glm::vec3(0.f, 0.f, 1.f));
+//	model = glm::translate(model, glm::vec3(-0.5f * aSize.x, -0.5f * aSize.y, 0.f));
+//
+//	model = glm::scale(model, glm::vec3(aSize.x, aSize.y, 1.f));
+//
+//	m_shader->SetMatrix4("model", model);
+//	m_shader->SetVector3f("spriteColor", aColor);
+//
+//
+//
+//	//CU::Matrix4x4<float> 
+//	//m_shader->SetMatrix4("model", )
+//
+//
+//	glActiveTexture(GL_TEXTURE0);
+//	aTexture.Bind();
+//
+//	glBindVertexArray(m_quadVAO);
+//	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+//	glBindVertexArray(0);
+//}
+
+void SpriteRenderer::RenderSprite(const SpriteRenderData& someData)
 {
 	assert(m_shader);
 
 	m_shader->Activate();
 
 	glm::mat4 model = glm::mat4(1.f);
-	model = glm::translate(model, glm::vec3(aPosition.x, aPosition.y, 0.f)); // Use own math library!?
+	model = glm::translate(model, glm::vec3(someData.m_position.x, someData.m_position.y, 0.f)); // Use own math library!?
 
-	model = glm::translate( model, glm::vec3(0.5f * aSize.x, 0.5f * aSize.y, 0.f));
-	model = glm::rotate(model, glm::radians(aRotation), glm::vec3(0.f, 0.f, 1.f));
-	model = glm::translate(model, glm::vec3(-0.5f * aSize.x, -0.5f * aSize.y, 0.f));
+	model = glm::translate( model, glm::vec3(0.5f * someData.m_size.x, 0.5f * someData.m_size.y, 0.f));
+	model = glm::rotate(model, glm::radians(someData.m_rotation), glm::vec3(0.f, 0.f, 1.f));
+	model = glm::translate(model, glm::vec3(-0.5f * someData.m_size.x, -0.5f * someData.m_size.y, 0.f));
 
-	model = glm::scale(model, glm::vec3(aSize.x, aSize.y, 1.f));
+	model = glm::scale(model, glm::vec3(someData.m_size.x, someData.m_size.y, 1.f));
 
 	m_shader->SetMatrix4("model", model);
-	m_shader->SetVector3f("spriteColor", aColor);
+	m_shader->SetVector3f("spriteColor", someData.m_color);
 	
 
 
@@ -86,7 +118,7 @@ void SpriteRenderer::DrawSprite(Texture2D& aTexture, const CU::Vector2<float>& a
 
 
 	glActiveTexture(GL_TEXTURE0); 
-	aTexture.Bind();
+	someData.m_texture.Bind();
 
 	glBindVertexArray(m_quadVAO);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
