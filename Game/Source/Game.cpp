@@ -40,7 +40,7 @@ bool Game::Init()
 	m_shaderManager.GetResource("sprite").Activate().SetInt("image", 0);
 	m_shaderManager.GetResource("sprite").SetMatrix4("projection", projection);
 
-	GuiFactory::GetInstance().Init(&m_textureManager, &m_spriteRenderer);
+	GuiFactory::GetInstance().Init(&m_textureManager, &m_spriteRenderer, &m_textRenderer);
 	
 	
 	const auto& size = m_window.GetSize();
@@ -73,12 +73,8 @@ void Game::LateUpdate()
 
 void Game::Draw()
 {
-	m_window.ClearScreen();	
-	
-	m_textRenderer.RenderText({ "This is sample text", { 0.5, 0.8f, 0.2f }, { 200.0f, 100.0f }, 1.0f, });
-	//m_textRenderer.RenderText({ "HELLO", { 0.5f, 0.8f, 0.2f }, { 25.f, 25.f }, 0.5f });
+	m_window.ClearScreen();
 	m_sceneManager.Draw();
-
 	m_window.SwapBuffers();
 }
 
