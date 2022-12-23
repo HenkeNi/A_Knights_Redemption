@@ -29,6 +29,10 @@ void TitleScene::Init()
 	logo.GetComponent<C_Transform>()->SetScale({ 200.f, 200.f });									// read from json?
 	m_gameObjects.push_back(logo);
 
+	GameObject title = GuiFactory::GetInstance().CreateTitle("Platformer");
+	title.GetComponent<C_Transform>()->SetPosition({ screenSize.x * 0.5f, screenSize.y * 0.15f });
+	m_gameObjects.push_back(title);
+
 	// TODO: Add 'Title', 'Creator', 
 
 }
