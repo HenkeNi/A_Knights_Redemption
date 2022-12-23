@@ -54,7 +54,7 @@ public:
             // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
             position.x += (ch.m_advanced >> 6) * someData.m_scale; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
         }
-        glBindVertexArray(0);
+        glBindVertexArray(0);    
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
