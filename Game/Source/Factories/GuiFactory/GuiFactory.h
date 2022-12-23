@@ -4,6 +4,7 @@
 
 class GameObject;
 class SpriteRenderer;
+class TextRenderer;
 
 class GuiFactory
 {
@@ -13,7 +14,7 @@ public:
 
 	static GuiFactory&	GetInstance();
 
-	void				Init(TextureManager* aTextureManager, SpriteRenderer* aRenderer);
+	void				Init(TextureManager* aTextureManager, SpriteRenderer* aRenderer, TextRenderer* aTextRenderer);
 	GameObject			CreateBackground(eSceneType aType);
 	GameObject			CreateImage(const std::string& aTexture);
 	GameObject			CreateButton(const std::string& aText, const std::function<void()>& aCallback);
@@ -25,4 +26,5 @@ private:
 
 	TextureManager*		m_textureManager;
 	SpriteRenderer*		m_spriteRenderer;
+	TextRenderer*		m_textRenderer;
 };

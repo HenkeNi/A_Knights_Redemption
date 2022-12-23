@@ -3,6 +3,8 @@
 #include "GameObject.h"
 #include "Sprite/C_Sprite.h"
 #include "SpriteRenderer/SpriteRenderer.h"
+#include "Text/C_Text.h"
+#include "TextRenderer/TextRenderer.h"
 
 
 GuiFactory::GuiFactory()
@@ -16,10 +18,11 @@ GuiFactory& GuiFactory::GetInstance()
 	return instance; 
 }
 
-void GuiFactory::Init(TextureManager* aTextureManager, SpriteRenderer* aRenderer)
+void GuiFactory::Init(TextureManager* aTextureManager, SpriteRenderer* aRenderer, TextRenderer* aTextRenderer)
 {
 	m_textureManager = aTextureManager;
 	m_spriteRenderer = aRenderer;
+	m_textRenderer	 = aTextRenderer;
 }
 
 GameObject GuiFactory::CreateBackground(eSceneType aType)
@@ -27,6 +30,8 @@ GameObject GuiFactory::CreateBackground(eSceneType aType)
 	assert(m_textureManager && m_spriteRenderer && "Factory is uninitialized");
 
 	GameObject background;
+
+	// Set size to window size
 
 	return background;
 }
@@ -54,6 +59,12 @@ GameObject GuiFactory::CreateTitle(const std::string& aText)
 	assert(m_textureManager && m_spriteRenderer && "Factory is uninitialized");
 
 	GameObject title;
+	auto text = title.CreateComponent<C_Text>(m_textRenderer);
+	text->SetText(aText);
+	text->SetColor({ 1.f, 1.f, 1.f });
+
+	// Set size (and position)??
+
 	return title;
 }
 
