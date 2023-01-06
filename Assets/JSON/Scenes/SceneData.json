@@ -1,0 +1,104 @@
+[
+  {
+    "scene_type": 0,
+    "scene_name": "Title",
+    "objects": [
+      {
+        "type": "image",
+        "image_name": "Knight",
+        "position": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "scale": {
+          "width": 200.0,
+          "height": 200.0
+        }
+      },
+      {
+        "type": "title",
+        "text": "A Knights Tale",
+        "position": {
+          "x": 0.5,
+          "y": 0.85
+        },
+        "scale": {
+          "width": 0.85,
+          "height": 0.85
+        }
+      },
+      {
+        "type": "label",
+        "text": "Platformer made using OpenGL",
+        "position": {
+          "x": 0.5,
+          "y": 0.75
+        },
+        "scale": {
+          "width": 0.65,
+          "height": 0.65
+        }
+      }
+    ]
+  },
+  {
+    "scene_type": 1,
+    "scene_name": "Loading",
+    "objects": [
+      {
+        "type": "title",
+        "text": "Loading...",
+        "position": {
+          "x": 0.65,
+          "y": 0.1
+        },
+        "scale": {
+          "width": 2.0,
+          "height": 2.0
+        }
+      }
+    ]
+  },
+  {
+    "scene_type": 2,
+    "scene_name": "Menu",
+    "objects": [
+      {
+        "type": "title",
+        "text": "Menu",
+        "position": {
+          "x": 0.5,
+          "y": 0.75
+        },
+        "scale": {
+          "width": 1.0,
+          "height": 1.0
+        }
+      }
+    ]
+  },
+  {
+    "scene_type": 3,
+    "scene_name": "Settings",
+    "objects": [
+    ]
+  },
+  {
+    "scene_type": 5,
+    "scene_name": "Pause",
+    "objects": [
+      {
+        "type": "title",
+        "text": "Pause",
+        "position": {
+          "x": 0.5,
+          "y": 0.75
+        },
+        "scale": {
+          "width": 1.0,
+          "height": 1.0
+        }
+      }
+    ]
+  }
+]
