@@ -6,7 +6,7 @@ int main()
 {
 	Game game;
 
-    if (!game.Init())
+	if (!game.Init())
         return -1;
   
 	while (game.IsRunning())
