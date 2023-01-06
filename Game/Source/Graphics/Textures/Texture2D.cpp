@@ -2,18 +2,18 @@
 #include "Texture2D.h"
 
 
-Texture2D::Texture2D()
-	: m_internalFormat{ GL_RGB }, m_imageFormat{ GL_RGB }, m_id{ 0 }
+Texture2D::Texture2D(bool isAlpha)
+	: m_internalFormat{ isAlpha ? GL_RGBA : GL_RGB }, m_imageFormat{ m_internalFormat }, m_id{ 0 }
 {
 }
 
 
-void Texture2D::Init(unsigned aWidth, unsigned aHeight, unsigned char* data)
+void Texture2D::Init(const CU::Vector2<int>& aSize, unsigned char* data)
 {
 	/* Generate Texture */ 
 	glGenTextures(1, &m_id);
 	glBindTexture(GL_TEXTURE_2D, m_id);
-	glTexImage2D(GL_TEXTURE_2D, 0, m_internalFormat, aWidth, aHeight, 0, m_imageFormat, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, m_internalFormat, aSize.x, aSize.y, 0, m_imageFormat, GL_UNSIGNED_BYTE, data);
 
 	// Set texture wrap and filter modes
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
