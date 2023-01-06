@@ -20,7 +20,7 @@ Game::~Game()
 
 bool Game::Init()
 {
-	if (!m_window.Init() || glewInit() != GLEW_OK) // TODO: Instead of passing in a keycallback function -> send an event??? -> mark as handled??
+	if (!m_window.Init() || glewInit() != GLEW_OK)
 		return false;
 
 	SetupOpenGL();
@@ -28,10 +28,10 @@ bool Game::Init()
 	m_textureManager.FetchAll("../Assets/Json/Textures.json");
 	m_shaderManager.FetchAll("../Assets/Json/Shaders.json");
 	
-	m_inputHandler.Init();
+	m_inputHandler.Init(&m_window);
 	m_spriteRenderer.Init();
 
-	m_window.SetKeyCallback(m_inputHandler.KeyCallback); 
+	m_window.SetKeyCallback(m_inputHandler.KeyCallback);   // TODO: Instead of passing in a keycallback function -> send an event??? -> mark as handled??
 	m_spriteRenderer.SetShader(&m_shaderManager.GetResource("sprite"));
 
 
@@ -57,7 +57,7 @@ bool Game::Init()
 void Game::ProcessEvents()
 {
 	m_window.PollEvents();
-	//m_sceneManager.ProcessEvents(); -- Store all events in a container??
+	m_sceneManager.ProcessEvents();
 }
 
 void Game::Update()
@@ -97,7 +97,7 @@ void Game::SetupOpenGL()
 
 void Game::RegisterScenes()
 {
-	auto sharedContext = SharedContext{ m_window, m_sceneManager };
+	auto sharedContext = SharedContext{ m_window, m_sceneManager, m_inputHandler };
 
 	m_sceneManager.RegisterScene(std::make_unique<TitleScene>(sharedContext),	eSceneType::Title);
 	m_sceneManager.RegisterScene(std::make_unique<LoadingScene>(sharedContext), eSceneType::Loading);
@@ -105,9 +105,14 @@ void Game::RegisterScenes()
 	m_sceneManager.RegisterScene(std::make_unique<GameScene>(sharedContext),	eSceneType::Game);
 	m_sceneManager.RegisterScene(std::make_unique<PauseScene>(sharedContext),	eSceneType::Pause);
 
-	m_sceneManager.Init({ eSceneType::Game, eSceneType::Menu, eSceneType::Loading, eSceneType::Title });
+	m_sceneManager.SetActiveScenes({ eSceneType::Game, eSceneType::Menu, eSceneType::Loading, eSceneType::Title });
+	m_sceneManager.SetupScenes(m_window);
 }
 
 void Game::MapControlls()
 {
+	// TODO: One key can do multiple events??
+
+	m_inputHandler.MapEvent(eInput::Key_Space,	eEventType::Accept); 
+	m_inputHandler.MapEvent(eInput::Key_Escape, eEventType::Reject);
 }
