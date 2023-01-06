@@ -1,5 +1,7 @@
 #pragma once
 
+// TODO: Put Enums folder in a Data folder??
+
 
 enum class eEventType
 {
@@ -38,10 +40,10 @@ enum class eMessage // Fix ! (inheritance?) eNotification eMessageType
 	MoveDownRight,
 };
 
-enum class eInput
+enum class eInput // RENAME eKey??
 {
 	Key_Space,
-	Key_Escape,
+	Key_Escape, 
 	Key_P,
 	Key_Enter,
 	Key_W,
@@ -61,4 +63,9 @@ enum class eInput
 enum class eSceneType
 {
 	Title, Loading, Menu, Settings, Game, Pause, GameOver, Count
+};
+
+enum class eKeyStatus
+{
+	Released, Pressed, Held,
 };
