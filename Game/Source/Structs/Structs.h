@@ -1,4 +1,5 @@
 #pragma once
+#include "InputHandler.h"
 #include "SceneManager/SceneManager.h"
 #include "Shader/Shader.h"
 #include "Textures/Texture2D.h"
@@ -9,6 +10,7 @@ struct SharedContext
 {
 	Window&				m_window;
 	SceneManager&		m_sceneManager;
+	InputHandler&		m_inputHandler;
 	//TextureManager&	m_textureManager;
 	//ShaderManager&	m_shaderManager;
 };
