@@ -30,7 +30,9 @@ void C_Text::Draw()	const
 		return;
 
 	auto transform = m_transform.lock();
-	m_renderer->RenderText({ m_text, m_color, transform->GetPosition(), transform->GetScale().y	}); // Y scale??
+	auto xPos = transform->GetPosition().x ;
+
+	m_renderer->RenderText({ m_text, m_color, { xPos, transform->GetPosition().y }, transform->GetScale().y }); // Y scale??
 }
 
 void C_Text::OnActivate()
