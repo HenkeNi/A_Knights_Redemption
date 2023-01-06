@@ -17,12 +17,14 @@ public:
 	void				Init(TextureManager* aTextureManager, SpriteRenderer* aRenderer, TextRenderer* aTextRenderer);
 	GameObject			CreateBackground(eSceneType aType);
 	GameObject			CreateImage(const std::string& aTexture);
-	GameObject			CreateButton(const std::string& aText, const std::function<void()>& aCallback);
+	GameObject			CreateButton(const std::string& aText, int anAction);
 	GameObject			CreateTitle(const std::string& aText);
 	GameObject			CreateLabel(const std::string& aText);
 
 private:
 	GuiFactory();
+
+	const std::function<void()>& GetButtonAction(int anAction);
 
 	TextureManager*		m_textureManager;
 	SpriteRenderer*		m_spriteRenderer;

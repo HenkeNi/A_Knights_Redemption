@@ -46,7 +46,7 @@ GameObject GuiFactory::CreateImage(const std::string& aTexture)
 	return image;
 }
 
-GameObject GuiFactory::CreateButton(const std::string& aText, const std::function<void()>& aCallback)
+GameObject GuiFactory::CreateButton(const std::string& aText, int anAction)
 {
 	assert(m_textureManager && m_spriteRenderer && "Factory is uninitialized");
 
@@ -73,5 +73,26 @@ GameObject GuiFactory::CreateLabel(const std::string& aText)
 	assert(m_textureManager && m_spriteRenderer && "Factory is uninitialized");
 
 	GameObject label;
+	auto text = label.CreateComponent<C_Text>(m_textRenderer);
+	text->SetText(aText);
+	text->SetColor({ 0.2f, 0.2f, 0.2f });
+
 	return label;
+}
+
+
+const std::function<void()>& GuiFactory::GetButtonAction(int anAction)
+{
+	// LOOK INTO COMMAND PATTERN!!
+
+	std::function<void()> action = [](){};
+
+	switch (anAction)
+	{
+	case 1:
+		//action = [](){ m_sharedContext.m_}
+		break;
+	}
+
+	return action;
 }
