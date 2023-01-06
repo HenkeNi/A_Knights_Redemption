@@ -94,6 +94,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Commands\Commands.h" />
+    <ClInclude Include="Source\Commands\Command.hpp" />
     <ClInclude Include="Source\Components\Text\C_Text.h" />
     <ClInclude Include="Source\Graphics\Camera\Camera2D.h" />
     <ClInclude Include="Source\Factories\GuiFactory\GuiFactory.h" />
@@ -154,7 +156,7 @@
     <ClInclude Include="Source\Enums\Enumerations.h" />
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\Precompiled\Pch.h" />
-    <ClInclude Include="Source\Scenes\Scene.hpp" />
+    <ClInclude Include="Source\Scenes\Scene.h" />
     <ClInclude Include="Source\Structs\Structs.h" />
     <ClInclude Include="Source\Systems\EventSystem\Dispatcher\Dispatcher.h" />
     <ClInclude Include="Source\Systems\EventSystem\EventSystem.h" />
@@ -167,6 +169,7 @@
     <ClInclude Include="Source\Scenes\Title\TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Commands\Commands.cpp" />
     <ClCompile Include="Source\Components\Text\C_Text.cpp" />
     <ClCompile Include="Source\Graphics\Camera\Camera2D.cpp" />
     <ClCompile Include="Source\Components\Component.cpp" />
@@ -194,6 +197,7 @@
     <ClCompile Include="Source\Scenes\Loading\LoadingScene.cpp" />
     <ClCompile Include="Source\Scenes\Menu\MenuScene.cpp" />
     <ClCompile Include="Source\Scenes\Pause\PauseScene.cpp" />
+    <ClCompile Include="Source\Scenes\Scene.cpp" />
     <ClCompile Include="Source\Scenes\Title\TitleScene.cpp" />
     <ClCompile Include="Source\Systems\EventSystem\Dispatcher\Dispatcher.cpp" />
     <ClCompile Include="Source\Systems\EventSystem\EventSystem.cpp" />
