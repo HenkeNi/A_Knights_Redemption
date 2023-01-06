@@ -36,7 +36,8 @@ void C_Sprite::Draw() const
 	// TODO: Have a reference to Transform??
 	//auto transform = m_owner->GetComponent<C_Transform>();
 	auto transform = m_transform.lock();
-	m_renderer->RenderSprite({ *m_texture, { 1.f, 1.f, 1.f }, transform->GetPosition(), transform->GetScale(), transform->GetRotation() });
+	//auto pos = CU::Vector2<float>{ transform->GetPosition().x - transform->GetScale().x * 0.5f, transform->GetPosition().y - transform->GetScale().y * 0.5f };
+	m_renderer->RenderSprite({ *m_texture, { 1.f, 1.f, 1.f }, transform->GetPosition(), transform->GetScale(), transform->GetRotation()});
 }
 
 void C_Sprite::OnActivate()
