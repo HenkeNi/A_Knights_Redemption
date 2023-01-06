@@ -21,7 +21,18 @@ public:
        glBindVertexArray(m_VAO);
 
         // iterate through all characters
-        auto position = someData.m_position;
+       auto position = someData.m_position; // 812.9  (150 is half size!
+
+       position.x -= (someData.m_text.size() * m_characters.begin()->second.m_size.x) * 0.5f; // TEST!!  
+
+      /* auto a1 = someData.m_text.size();
+       auto b1 = m_characters.begin()->second.m_bearing.x;
+       auto c1 = m_characters.begin()->second.m_advanced;
+       auto d1 = m_characters.begin()->second.m_size;*/
+
+      // position.x += someData.m_text.size() * m_characters.begin()->second.m_bearing.x * someData.m_scale;
+       //auto position = CU::Vector2<float>{ someData.m_position.x + someData.m_text.size() * m_characters.at(0).m_bearing.x * someData.m_scale, someData.m_position.y };
+
         std::string::const_iterator c;
         for (c = someData.m_text.begin(); c != someData.m_text.end(); c++)
         {
@@ -54,6 +65,8 @@ public:
             // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
             position.x += (ch.m_advanced >> 6) * someData.m_scale; // bitshift by 6 to get value in pixels (2^6 = 64 (divide amount of 1/64th pixels by 64 to get amount of pixels))
         }
+        std::cout << "TESt pos " << position.x << '\n';
+
         glBindVertexArray(0);    
         glBindTexture(GL_TEXTURE_2D, 0);
     }
