@@ -3,46 +3,43 @@
 
 
 PauseScene::PauseScene(SharedContext aSharedContext)
-	: Scene{ aSharedContext }
+	: Scene{ aSharedContext }, m_shouldResume{ false }
 {
 }
 
-void PauseScene::Init()
+PauseScene::~PauseScene() {}
+
+void PauseScene::ProcessEvents()
 {
-
-}
-
-void PauseScene::Receive(Event& anEvent)
-{
-
+	if (m_sharedContext.m_inputHandler.IsKeyPressed(eInput::Key_Escape))
+	{
+		m_shouldResume = true;
+	}
+	m_sharedContext.m_inputHandler.ProcessInput();
 }
 
 void PauseScene::Update(float aDeltaTime)
 {
-
+	for (auto& object : m_sceneObjects)
+		object.Update(aDeltaTime);
 }
 
-void PauseScene::LateUpdate(float aDeltaTime)
-{
-
-}
+void PauseScene::LateUpdate(float aDeltaTime) {}
 
 void PauseScene::Draw() const
 {
-
+	for (auto& object : m_sceneObjects)
+		object.Draw();
 }
 
 void PauseScene::OnEnter()
 {
-
+	m_shouldResume = false;
 }
 
-bool PauseScene::IsResumeEnabled() const
-{
-	return false;
-}
+void PauseScene::OnExit() {}
 
 void PauseScene::ResumeGame() const
 {
-
+	m_sharedContext.m_sceneManager.PopScene();
 }
