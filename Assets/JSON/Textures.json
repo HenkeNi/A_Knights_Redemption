@@ -2,11 +2,21 @@
   {
     "name": "Test",
     "filepath": "../Assets/Textures/Idle__000.png",
+    "alpha": true
+  },
+  {
+    "name": "Container",
+    "filepath": "../Assets/Textures/container.jpg",
     "alpha": false
   },
   {
     "name": "Wall",
     "filepath": "../Assets/Textures/wall.jpg",
     "alpha": false
+  },
+  {
+    "name": "Knight",
+    "filepath": "../Assets/Textures/knight.png",
+    "alpha": true
   }
 ]
