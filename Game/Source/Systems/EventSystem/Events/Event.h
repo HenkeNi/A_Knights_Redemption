@@ -1,5 +1,5 @@
 #pragma once
-#include "../Enums/Enumerations.h"
+#include "DataTypes/Enumerations.h"
 
 class Event
 {

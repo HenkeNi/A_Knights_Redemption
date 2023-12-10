@@ -17,6 +17,9 @@ enum class eEventType
 	Accept,
 	Reject,
 
+	EntityCreated,
+	EntityDestroyed,
+
 	/*KeyPressed, KeyReleased,
 	MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled*/
 };

@@ -13,6 +13,11 @@ SceneManager::~SceneManager()
 {
 }
 
+std::shared_ptr<Scene> SceneManager::GetActiveScene()
+{
+	return m_scenes[(int)m_sceneStack.GetTop()];
+}
+
 void SceneManager::SetupScenes(Window& aWindow)
 {
 	std::ifstream ifs{ "../Assets/Json/Scenes/SceneData.json" };

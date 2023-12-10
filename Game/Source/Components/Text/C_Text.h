@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-#include "Structs.h"
+#include "DataTypes/Structs.h"
 
 class C_Transform;
 class TextRenderer;

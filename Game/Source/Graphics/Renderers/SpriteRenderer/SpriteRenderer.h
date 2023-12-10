@@ -1,6 +1,6 @@
 #pragma once
 #include "Shader/Shader.h"
-#include "Structs.h"
+#include "DataTypes/Structs.h"
 
 namespace CU = CommonUtilities;
 

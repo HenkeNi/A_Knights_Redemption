@@ -1,6 +1,6 @@
 #include "Pch.h"
 #include "Game.h"
-#include "Structs.h"
+#include "DataTypes/Structs.h"
 #include "Factories/GuiFactory/GuiFactory.h"
 #include "Game/GameScene.h"
 #include "HUD/HUDScene.h"
@@ -8,7 +8,7 @@
 #include "Menu/MenuScene.h"
 #include "Pause/PauseScene.h"
 #include "Title/TitleScene.h"
-
+#include "Scene.h"
 
 Game::Game() 
 {
@@ -18,12 +18,27 @@ Game::~Game()
 {
 }
 
+#include "ECS/Entities/EntityFactory.h"
+
 bool Game::Init()
 {
+	EntityFactory factory;
+	factory.LoadBlueprint("../Assets/Json/Blueprints/Player_Blueprint.json");
+
+
+
+
 	if (!m_window.Init() || glewInit() != GLEW_OK)
 		return false;
 
-	SetupOpenGL();
+	// SetupOpenGL();
+
+	// Send event?? Game init??
+
+	/* - Enable blending - */
+	glEnable(GL_CULL_FACE);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	m_textureManager.FetchAll("../Assets/Json/Textures.json");
 	m_shaderManager.FetchAll("../Assets/Json/Shaders.json");
@@ -54,46 +69,42 @@ bool Game::Init()
 	return true;
 }
 
-void Game::ProcessEvents()
+void Game::GameLoop()
 {
-	m_window.PollEvents();
-	m_sceneManager.ProcessEvents();
-}
+	CU::Timer timer;
 
-void Game::Update()
-{
-	m_timer.Update();
-	m_sceneManager.Update(m_timer.GetDeltaTime());
-}
+	while (m_window.IsOpen())
+	{
+		// Process Input
+		m_window.PollEvents();
+		m_sceneManager.ProcessEvents();
 
-void Game::LateUpdate()
-{
-	m_sceneManager.LateUpdate(m_timer.GetDeltaTime());
-}
+		timer.Update();
+		const float deltaTime = timer.GetDeltaTime();
 
-void Game::Draw()
-{
-	m_window.ClearScreen();
-	m_sceneManager.Draw();
-	m_window.SwapBuffers();
+		std::weak_ptr<Scene> activeScene = m_sceneManager.GetActiveScene();
+		if (auto scene = activeScene.lock())
+		{
+			// Update
+			scene->Update(deltaTime);
+			scene->LateUpdate(deltaTime);
+
+			// Draw
+			m_window.ClearScreen();
+			scene->Draw();
+			m_window.SwapBuffers();
+		}
+	
+		m_window.SetTitle("Fps: " + std::to_string((int)timer.GetAverageFPS())); // TODO; Get Draw calls...
+	}
 }
 
 void Game::Shutdown()
 {
+	if (m_window.IsOpen())
+		m_window.Close();
 }
 
-bool Game::IsRunning() const
-{
-	return m_window.IsOpen();
-}
-
-void Game::SetupOpenGL()
-{
-	/* - Enable blending - */
-	glEnable(GL_CULL_FACE);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
 
 void Game::RegisterScenes()
 {

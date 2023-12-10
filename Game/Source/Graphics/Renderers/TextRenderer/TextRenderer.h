@@ -1,5 +1,5 @@
 #pragma once
-#include "Structs.h"
+#include "DataTypes/Structs.h"
 
 class TextRenderer 
 {

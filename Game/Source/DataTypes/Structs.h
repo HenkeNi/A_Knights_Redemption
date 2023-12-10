@@ -37,3 +37,29 @@ struct Character
 	CU::Vector2<int>		m_bearing; // change to position (size)??
 	unsigned				m_textureID, m_advanced;
 };
+
+
+
+struct Vertex
+{
+	glm::vec3	Position;  // float Position[3];		// Change to CU::Vector3 instead??
+	glm::vec4	Color;	   // float Color[4];			
+	glm::vec2	TexCoords; // float TexCoords[2];		
+	float		TexIndex;
+	//GLint		TexIndex;
+};
+
+struct RenderContext
+{
+	class Shader* Shader = nullptr;
+	Vertex* Buffer = nullptr;
+	Vertex* CurrentVertex = nullptr;		// unsigned	m_currentBufferIndex;
+	uint16_t			IndexCount = 0;
+	unsigned			VAO, VBO, EBO;
+};
+
+struct RenderStats
+{
+	unsigned TotalDraws = 0;
+	unsigned TotalQuads = 0;
+};

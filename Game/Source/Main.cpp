@@ -9,14 +9,8 @@ int main()
 	if (!game.Init())
         return -1;
   
-	while (game.IsRunning())
-	{
-		game.ProcessEvents();
-		game.Update();
-		game.LateUpdate();
-		game.Draw();
-	}
-
+	game.GameLoop();
 	game.Shutdown();
+
 	return 0;
 }

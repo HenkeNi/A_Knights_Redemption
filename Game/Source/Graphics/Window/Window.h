@@ -25,6 +25,8 @@ public:
 	bool							IsOpen()		const;
 	const CU::Vector2<unsigned>&	GetSize()		const;
 
+	void			SetTitle(const std::string& aTitle);
+
 private:
 	bool							InitGlfw()		const;
 	void							LoadData();

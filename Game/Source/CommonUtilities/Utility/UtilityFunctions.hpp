@@ -2,6 +2,8 @@
 #include <cassert>
 #include <random>
 #include <string>
+#include <any>
+#include <document.h>
 
 #define PI 3.14159265358979323846 
 
@@ -76,5 +78,40 @@ namespace CommonUtilities
 	{
 		std::wstring wString{ aStr.begin(), aStr.end() };
 		return wString;
+	}
+
+
+
+
+	// RapidJSON
+	inline std::any GetJsonValue(const rapidjson::Value& aValue)
+	{
+		if (aValue.IsArray())
+		{
+			std::vector<std::any> values;
+			for (const auto& value : aValue.GetArray())
+			{
+				values.push_back(GetJsonValue(value));
+			}
+
+			return values;
+		}
+
+		if (aValue.IsFloat())
+			return aValue.GetFloat();
+		
+		if (aValue.IsInt())
+			return aValue.GetInt();
+		
+		if (aValue.IsString())
+			return std::string(aValue.GetString());
+		
+		if (aValue.IsBool())
+			return aValue.GetBool();
+		
+		if (aValue.IsDouble())
+			return aValue.GetDouble();
+		
+		return nullptr;
 	}
 }

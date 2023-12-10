@@ -1,6 +1,6 @@
 #pragma once
 #include "GameObject.h"
-#include "Structs.h"
+#include "DataTypes/Structs.h"
 #include "Listeners/EventListener.h"
 
 class SceneManager;

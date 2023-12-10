@@ -16,6 +16,16 @@ namespace CommonUtilities
 		myDeltaTime = elapsed;
 		myTotalTime += elapsed;
 		myPreviousTimePoint = current;
+
+	
+		// Calculate average fps
+		++m_totalFrames;
+		if ((m_elapsedTime += GetDeltaTime()) >= 1.f)
+		{
+			m_averageFPS = m_totalFrames / m_elapsedTime;
+			m_totalFrames = 0;
+			m_elapsedTime = 0.f;
+		}
 	}
 
 	float Timer::GetDeltaTime() const
@@ -26,5 +36,10 @@ namespace CommonUtilities
 	double Timer::GetTotalTime() const
 	{
 		return myTotalTime.count();
+	}
+
+	float Timer::GetAverageFPS() const
+	{
+		return m_averageFPS;
 	}
 }

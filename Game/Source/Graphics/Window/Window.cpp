@@ -89,6 +89,11 @@ const CU::Vector2<unsigned>& Window::GetSize() const
 	return m_size;
 }
 
+void Window::SetTitle(const std::string& aTitle)
+{
+	glfwSetWindowTitle(m_window, aTitle.c_str());
+}
+
 bool Window::InitGlfw()	const
 {
 	if (!glfwInit())

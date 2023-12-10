@@ -21,16 +21,13 @@
     <ClInclude Include="Source\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Enums\Enumerations.h">
+    <ClInclude Include="Source\DataTypes\Enumerations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\EventSystem\Dispatcher\Dispatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\EventSystem\Events\Event.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Systems\EventSystem\EventSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Graphics\Window\Window.h">
@@ -162,7 +159,7 @@
     <ClInclude Include="Source\Scenes\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Structs\Structs.h">
+    <ClInclude Include="Source\DataTypes\Structs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\GameObjects\GameObject.h">
@@ -186,7 +183,7 @@
     <ClInclude Include="Source\Graphics\Shader\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Handlers\InputHandler.h">
+    <ClInclude Include="Source\Input\InputHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Managers\ResourceManager\ResourceManager.hpp">
@@ -234,6 +231,36 @@
     <ClInclude Include="Source\Commands\Commands.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Rendering\Renderer\Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Graphics\Textures\TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DataTypes\Constants.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\Components\Base\Component.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\Entities\Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\Systems\System.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\Entities\EntityManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\Entities\EntityFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\Entities\EntityBlueprint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ECS\Components\ComponentFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp">
@@ -249,9 +276,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\EventSystem\Events\Event.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Systems\EventSystem\EventSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Graphics\Window\Window.cpp">
@@ -281,7 +305,7 @@
     <ClCompile Include="Source\Graphics\Shader\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Handlers\InputHandler.cpp">
+    <ClCompile Include="Source\Input\InputHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\Sprite\C_Sprite.cpp">
@@ -324,6 +348,30 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Commands\Commands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Rendering\Renderer\Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Graphics\Textures\TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ECS\Entities\Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ECS\Systems\System.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ECS\Entities\EntityManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ECS\Entities\EntityFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ECS\Entities\EntityBlueprint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ECS\Components\ComponentFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

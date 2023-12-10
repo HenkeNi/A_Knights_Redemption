@@ -1,5 +1,5 @@
 #pragma once
-#include "Enumerations.h"
+#include "DataTypes/Enumerations.h"
 #include "ResourceManager/ResourceManager.hpp"
 
 class GameObject;

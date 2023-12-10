@@ -1,5 +1,5 @@
 #pragma once
-#include "Enumerations.h"
+#include "DataTypes/Enumerations.h"
 #include "DataStructures/Linear/Stack/Stack.hpp"
 
 namespace CU = CommonUtilities;
@@ -9,11 +9,18 @@ class Window;
 
 // TODO: replace array with other data structure? Binary Search Tree? - [Might actually be worse?!]
 
+namespace
+{
+	using SceneArray = std::array<std::shared_ptr<Scene>, (int)eSceneType::Count>;
+}
+
 class SceneManager
 {
 public:
 	SceneManager();
 	~SceneManager();
+
+	std::shared_ptr<Scene>		 GetActiveScene();
 
 	void SetupScenes(Window& aWindow);
 	void ProcessEvents();
@@ -30,6 +37,7 @@ public:
 	bool IsEmpty()	const;
 
 private:
-	std::array<std::unique_ptr<Scene>, (int)eSceneType::Count>	m_scenes;			
-	CU::Stack<eSceneType>										m_sceneStack;
+	SceneArray				m_scenes;
+	CU::Stack<eSceneType>	m_sceneStack;
+	// std::array<std::unique_ptr<Scene>, (int)eSceneType::Count>	m_scenes;			
 };

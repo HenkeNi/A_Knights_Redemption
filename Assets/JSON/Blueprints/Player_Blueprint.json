@@ -1,0 +1,17 @@
+{
+  "identifier": "BP_Player",
+  "components": [
+    {
+      "type": "Transform",
+      "properties": {
+        "position": [ 0, 0 ]
+      }
+    },
+    {
+      "type": "Sprite",
+      "properties": {
+        "texture_id": "player.png"
+      }
+    }
+  ]
+}
